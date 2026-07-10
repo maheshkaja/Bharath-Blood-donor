@@ -1,0 +1,1713 @@
+/* ==========================================
+   AP BLOOD DONOR - PREMIUM STYLE SHEET V2
+   ========================================== */
+
+/* Fonts & Design Tokens */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --font-primary: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Color Palette */
+    --color-primary: #d91e36; /* Crimson Red */
+    --color-primary-hover: #b81428;
+    --color-primary-light: #ffeaec;
+    --color-dark-blue: #0b1528; /* Dark Blue / Navy Backgrounds */
+    --color-dark-blue-hover: #15253f;
+    --color-success: #10b981; /* Green */
+    --color-success-bg: #ecfdf5;
+    
+    /* Neutral Colors */
+    --bg-app: #f4f6f9;
+    --bg-card: #ffffff;
+    --border-light: #e2e8f0;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --text-light: #ffffff;
+    
+    /* Layout Tokens */
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 20px;
+    --box-shadow: 0 4px 12px rgba(11, 21, 40, 0.04);
+    --box-shadow-hover: 0 8px 24px rgba(217, 30, 54, 0.08);
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: #0f172a; /* Dark background to center device frame */
+    color: var(--text-main);
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Device Wrapper - fits mobile aspect ratio perfectly */
+.app-container {
+    width: 100%;
+    max-width: 450px;
+    height: 100vh;
+    max-height: 920px;
+    background-color: var(--bg-app);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    border-radius: 40px;
+    border: 12px solid #000000;
+}
+
+/* Status Bar Space Mock */
+.status-bar-mock {
+    height: 36px;
+    background-color: var(--color-primary);
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.status-icons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Responsive Viewport Overrides for actual Mobile Devices */
+@media (max-width: 500px) {
+    body {
+        display: block;
+        min-height: 100vh;
+        background-color: var(--bg-app);
+    }
+    .app-container {
+        width: 100%;
+        height: 100vh;
+        max-width: none;
+        max-height: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .status-bar-mock {
+        display: none;
+    }
+}
+
+/* Crimson Navigation Header */
+.app-header {
+    background-color: var(--color-primary);
+    color: var(--text-light);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(217, 30, 54, 0.15);
+}
+
+.brand-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-logo img, .brand-logo i {
+    color: var(--text-light);
+    font-size: 1.3rem;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-text h1 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+}
+
+.brand-text span {
+    font-size: 0.7rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* Vijayawada Focus Pill */
+.header-badge {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 99px;
+    padding: 6px 12px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.header-badge:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Main Content Area */
+.app-main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    padding-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.app-main::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Tab contents toggler */
+.tab-content {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tab-content.active {
+    display: flex;
+}
+
+/* Voluntary Alert Banner */
+.alert-voluntary {
+    background-color: #fff6f6;
+    border: 1px solid #ffe3e3;
+    border-radius: var(--border-radius-md);
+    padding: 12px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.alert-voluntary i {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    margin-top: 2px;
+}
+
+.alert-voluntary p {
+    font-size: 0.78rem;
+    color: #5c1d24;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Vijayawada Fast-Track Banner Card */
+.fast-track-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #b81428 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 16px 20px;
+    color: var(--text-light);
+    position: relative;
+    box-shadow: 0 8px 20px rgba(217, 30, 54, 0.2);
+}
+
+.fast-track-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.fast-track-badge {
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 4px 8px;
+    border-radius: 99px;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.fast-track-region {
+    font-size: 0.7rem;
+    font-weight: 600;
+    opacity: 0.95;
+}
+
+.fast-track-card h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+}
+
+.fast-track-card p {
+    font-size: 0.75rem;
+    opacity: 0.9;
+    margin-bottom: 12px;
+}
+
+/* Fast track buttons grid */
+.fast-track-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.fast-track-btn {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    border-radius: var(--border-radius-sm);
+    padding: 10px 0;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.fast-track-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* White Container Card (Common) */
+.section-card {
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-light);
+    padding: 16px 20px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.card-title-row i {
+    color: var(--color-primary);
+}
+
+.section-card h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+/* Custom 19 blood group button selectors grid */
+.blood-group-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.blood-group-btn {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius-sm);
+    padding: 10px 0;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #334155;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}
+
+.blood-group-btn:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+/* Span Bombay phenotype buttons across 2 columns */
+.blood-group-btn.span-2 {
+    grid-column: span 2;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    padding: 4px 6px;
+}
+
+/* Selected state for blood group button */
+.blood-group-btn.selected {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--text-light);
+    box-shadow: 0 4px 10px rgba(217, 30, 54, 0.25);
+}
+
+/* Inputs & Form Groups */
+.form-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+}
+
+/* Custom styling for inputs and selects */
+.form-input, .form-control {
+    width: 100%;
+    height: 44px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0 14px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-main);
+    outline: none;
+    font-family: inherit;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.form-input:focus, .form-control:focus {
+    border-color: #3b82f6;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.form-group.has-error .form-input, .form-group.has-error .form-control {
+    border-color: var(--color-primary);
+    background-color: #fffcfc;
+}
+
+/* Custom Select Wrapper for Chevrons */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.select-chevron {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.form-control:focus + .select-chevron {
+    color: #3b82f6;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.form-input-icon {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.form-input-icon i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.form-input-icon .form-input {
+    padding-left: 38px;
+}
+
+/* Responsive Form Rows: stacked on mobile, side-by-side on desktop */
+@media (max-width: 500px) {
+    .form-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+/* Standard blue search buttons */
+.search-submit-btn {
+    background-color: var(--color-dark-blue);
+    color: var(--text-light);
+    border-radius: var(--border-radius-sm);
+    padding: 12px 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 4px;
+}
+
+.search-submit-btn:hover {
+    background-color: var(--color-dark-blue-hover);
+}
+
+/* Search results section */
+.results-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4px;
+    margin-bottom: 2px;
+}
+
+.results-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #475569;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.results-count-badge {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+    padding: 4px 10px;
+    border-radius: 99px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.donors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Donor card layout */
+.donor-card {
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-light);
+    padding: 14px 16px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.donor-card-top {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Red blood group avatar badge */
+.donor-avatar-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #fff1f2;
+    border: 1px solid var(--color-primary-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+}
+
+.donor-avatar-circle strong {
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.donor-avatar-circle span {
+    font-size: 0.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.donor-info-middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.donor-name-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.donor-name {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.status-dot-green {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-success);
+    box-shadow: 0 0 8px var(--color-success);
+}
+
+.status-dot-grey {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--text-muted);
+}
+
+.donor-loc-age {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.donor-loc-age i {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.donor-status-badge {
+    border-radius: 99px;
+    padding: 4px 10px;
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.donor-status-badge.available {
+    background-color: var(--color-success-bg);
+    color: var(--color-success);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.donor-status-badge.resting {
+    background-color: #f1f5f9;
+    color: #64748b;
+    border: 1px solid rgba(100, 116, 139, 0.15);
+}
+
+/* Donation stats row */
+.donor-stats-row {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f8fafc;
+    border-radius: var(--border-radius-sm);
+    padding: 8px 12px;
+    font-size: 0.72rem;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.stat-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stat-left i {
+    color: #eab308;
+    font-size: 0.85rem;
+}
+
+.stat-right {
+    font-weight: 700;
+}
+
+/* donor grey action bar grid */
+.donor-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 10px;
+}
+
+.action-bar-btn {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius-sm);
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.action-bar-btn i {
+    font-size: 0.95rem;
+    color: #64748b;
+}
+
+.action-bar-btn:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    color: var(--text-main);
+}
+
+.action-bar-btn:hover i {
+    color: var(--color-primary);
+}
+
+/* ==========================================
+   SECTION 3: REQUESTS TAB STYLES
+   ========================================== */
+.emergency-board-card {
+    background-color: var(--color-dark-blue);
+    border-radius: var(--border-radius-lg);
+    padding: 16px 20px;
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 6px 18px rgba(11, 21, 40, 0.15);
+}
+
+.emergency-board-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 65%;
+}
+
+.emergency-board-pill {
+    background-color: var(--color-primary);
+    color: var(--text-light);
+    padding: 3px 8px;
+    border-radius: 99px;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    width: fit-content;
+}
+
+.emergency-board-card h2 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+
+.emergency-board-card p {
+    font-size: 0.72rem;
+    opacity: 0.85;
+}
+
+.emergency-post-btn {
+    background-color: var(--color-primary);
+    color: var(--text-light);
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: var(--border-radius-sm);
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(217, 30, 54, 0.3);
+}
+
+.emergency-post-btn:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-1px);
+}
+
+/* Emergency requests filters */
+.requests-filters-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Request cards list */
+.requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.request-card {
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-light);
+    padding: 14px 16px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.request-card-top {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.req-blood-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(217, 30, 54, 0.2);
+}
+
+.req-blood-circle strong {
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.req-blood-circle span {
+    font-size: 0.45rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.req-patient-middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.req-name-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.req-name {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.req-urgent-badge {
+    background-color: rgba(217, 30, 54, 0.08);
+    color: var(--color-primary);
+    border: 1px solid rgba(217, 30, 54, 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.58rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.req-location-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.req-location-date span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.req-units-pill {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    border-radius: 99px;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* Detail Box (Pink layout) */
+.req-details-pink-box {
+    background-color: #fff5f5;
+    border: 1px solid #ffe3e3;
+    border-radius: var(--border-radius-md);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #5c1d24;
+    font-weight: 600;
+}
+
+.req-pink-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.req-pink-row span strong {
+    color: #8c2834;
+}
+
+/* Request actions */
+.req-actions-row {
+    display: flex;
+    gap: 8px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 10px;
+}
+
+.req-donate-btn {
+    flex: 2;
+    background-color: var(--color-primary);
+    color: var(--text-light);
+    border-radius: var(--border-radius-sm);
+    padding: 10px 0;
+    font-size: 0.82rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(217, 30, 54, 0.2);
+}
+
+.req-donate-btn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.req-fulfill-btn {
+    flex: 1;
+    background-color: transparent;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    border-radius: var(--border-radius-sm);
+    padding: 10px 0;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.req-fulfill-btn:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+/* ==========================================
+   SECTION 4: REGISTER TAB STYLES
+   ========================================== */
+.register-centered-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    padding: 12px 0 6px 0;
+}
+
+.register-avatar-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--color-primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    font-size: 1.6rem;
+    box-shadow: 0 4px 12px rgba(217, 30, 54, 0.1);
+}
+
+.register-centered-header h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.2px;
+}
+
+.register-centered-header p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    max-width: 320px;
+}
+
+.register-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-info-note {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+/* ==========================================
+   SECTION 5: ABOUT AP TAB STYLES
+   ========================================== */
+.about-subtitle {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1.4;
+    padding: 0 4px;
+}
+
+.compatibility-checker-card {
+    background-color: var(--color-dark-blue);
+    border-radius: var(--border-radius-lg);
+    padding: 16px 20px;
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 6px 18px rgba(11, 21, 40, 0.15);
+}
+
+.compatibility-checker-card h3 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.compatibility-checker-card h3 i {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+}
+
+.compatibility-checker-card p {
+    font-size: 0.75rem;
+    opacity: 0.85;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+.compat-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.compat-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-light);
+    border-radius: var(--border-radius-sm);
+    padding: 8px 0;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.compat-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.compat-btn.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 10px rgba(217, 30, 54, 0.25);
+}
+
+/* Compat outcomes panel */
+.compat-outcomes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+}
+
+.compat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.compat-row label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.compat-row.donate label {
+    color: var(--color-success);
+}
+
+.compat-row.receive label {
+    color: var(--color-primary);
+}
+
+.compat-pills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.compat-pill {
+    padding: 4px 10px;
+    border-radius: 99px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    min-width: 36px;
+    text-align: center;
+}
+
+.compat-row.donate .compat-pill {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: var(--color-success);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.compat-row.receive .compat-pill {
+    background-color: rgba(217, 30, 54, 0.15);
+    color: var(--color-primary);
+    border: 1px solid rgba(217, 30, 54, 0.25);
+}
+
+/* Emergency Blood Banks list styling */
+.blood-banks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.blood-bank-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 10px;
+}
+
+.blood-bank-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.blood-bank-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.blood-bank-name {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.blood-bank-address {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.call-bank-btn {
+    background-color: #fff1f2;
+    border: 1px solid rgba(217, 30, 54, 0.12);
+    color: var(--color-primary);
+    padding: 6px 12px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.call-bank-btn:hover {
+    background-color: var(--color-primary);
+    color: var(--text-light);
+    border-color: var(--color-primary);
+}
+
+/* ==========================================
+   GLOBAL NAVIGATION BOTTOM BAR
+   ========================================== */
+.app-nav-bar {
+    height: 64px;
+    background-color: #ffffff;
+    border-top: 1px solid var(--border-light);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    z-index: 10;
+    box-shadow: 0 -4px 12px rgba(11, 21, 40, 0.03);
+}
+
+.nav-bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-bar-item i {
+    font-size: 1.25rem;
+    transition: var(--transition);
+}
+
+.nav-bar-item span {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+/* Active navigation item styling */
+.nav-bar-item.active {
+    color: var(--color-primary);
+}
+
+/* Nav bottom line active indicator */
+.nav-bar-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    width: 28px;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 99px;
+}
+
+/* Notifications badge count */
+.nav-badge {
+    position: absolute;
+    top: 10px;
+    right: 28%;
+    background-color: var(--color-primary);
+    color: var(--text-light);
+    font-size: 0.6rem;
+    font-weight: 800;
+    min-width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+    border: 1px solid #ffffff;
+}
+
+/* ==========================================
+   MODAL POPUP FOR POSTING REQUESTS
+   ========================================== */
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 21, 40, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-container {
+    width: 100%;
+    background-color: var(--bg-card);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding: 20px 24px 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
+    animation: slideUpModal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-main);
+}
+
+.modal-header h3 i {
+    color: var(--color-primary);
+}
+
+.modal-close-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.modal-close-btn:hover {
+    background-color: #e2e8f0;
+    color: var(--text-main);
+}
+
+/* ==========================================
+   TOAST NOTIFICATION POPUPS
+   ========================================== */
+.toast-container {
+    position: absolute;
+    top: 56px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background-color: var(--color-dark-blue);
+    color: var(--text-light);
+    padding: 10px 16px;
+    border-radius: 99px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+}
+
+.toast-container.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast-container i {
+    color: var(--color-success);
+    font-size: 0.95rem;
+}
+
+/* ==========================================
+   KEYFRAME ANIMATIONS
+   ========================================== */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUpModal {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse-icon {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* ==========================================
+   LOGIN & REGISTRATION STYLES V2
+   ========================================== */
+.login-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 100%;
+    background: linear-gradient(135deg, #f8fafc 0%, #fff1f2 100%);
+    padding: 24px 16px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.login-logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 24px;
+    margin-top: 10px;
+}
+
+.login-logo-img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(217, 30, 54, 0.15);
+    padding: 3px;
+    margin-bottom: 12px;
+    object-fit: contain;
+}
+
+.login-logo-section h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.login-logo-section p {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+.login-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px 20px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    animation: slideUp 0.4s ease-out;
+}
+
+.login-tabs-nav {
+    display: flex;
+    border-bottom: 2px solid #f1f5f9;
+    margin-bottom: 20px;
+}
+
+.login-tab-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: var(--transition);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+}
+
+.login-tab-btn.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+
+.login-form {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.login-form.active {
+    display: flex;
+}
+
+.gmail-login-btn {
+    width: 100%;
+    height: 44px;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #334155;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.gmail-login-btn:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 16px 0;
+    color: #94a3b8;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.login-divider::before, .login-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.login-divider:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.login-divider:not(:empty)::after {
+    margin-left: .5em;
+}
+
+/* Header Logout Button */
+.header-logout-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #ffffff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.header-logout-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+/* Google Accounts Chooser Dialog */
+.google-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.google-modal-overlay.active {
+    display: flex;
+}
+
+.google-modal-container {
+    background: #ffffff;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 340px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+}
+
+.google-modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    text-align: center;
+}
+
+.google-modal-header img {
+    margin-bottom: 8px;
+}
+
+.google-modal-header h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.google-modal-header p {
+    font-size: 0.72rem;
+    color: #64748b;
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+.google-accounts-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.google-account-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 1px solid #f8fafc;
+    text-align: left;
+}
+
+.google-account-row:hover {
+    background-color: #f1f5f9;
+}
+
+.google-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.google-profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.google-profile-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.google-profile-email {
+    font-size: 0.72rem;
+    color: #64748b;
+    margin-top: 1px;
+}
+
+.google-modal-footer {
+    padding: 12px 20px;
+    background-color: #f8fafc;
+    text-align: center;
+    font-size: 0.72rem;
+    color: #94a3b8;
+    border-top: 1px solid #f1f5f9;
+}

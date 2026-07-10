@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Bharath Blood Donor - Saving Lives instantly. Connect with verified blood donors.">
+    <title>Bharath Blood Donor - Donate Blood, Save Lives</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Premium Style Sheet -->
+    <link rel="stylesheet" href="style-v2.css">
+</head>
+<body>
+
+    <!-- Device Container -->
+    <div class="app-container">
+        
+        <!-- Status Bar Mock -->
+        <div class="status-bar-mock">
+            <span id="mock-time">8:14 AM</span>
+            <div class="status-icons">
+                <span class="header-badge" style="background: rgba(255,255,255,0.25); border: none; padding: 2px 8px; height: 18px; font-size: 0.58rem; margin: 0;">
+                    <i class="fa-solid fa-droplet text-light"></i> BHARATH-DONOR
+                </span>
+                <i class="fa-solid fa-tower-broadcast" style="font-size: 0.65rem;"></i>
+                <i class="fa-solid fa-wifi" style="font-size: 0.65rem;"></i>
+                <i class="fa-solid fa-battery-three-quarters" style="font-size: 0.75rem;"></i>
+            </div>
+        </div>
+
+        <!-- Login & Registration Page Wrapper -->
+        <div id="login-page" class="login-page-container">
+            <div class="login-logo-section">
+                <img src="logo.jpeg" alt="Bharath Blood Donor Logo" class="login-logo-img">
+                <h2>BHARATH BLOOD DONOR</h2>
+                <p>Donate Blood, Save Lives</p>
+            </div>
+
+            <div class="login-card">
+                <!-- Gmail Sign-in -->
+                <button class="gmail-login-btn" id="btn-gmail-login">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="18" height="18">
+                    <span>Sign in with Gmail</span>
+                </button>
+
+                <div class="login-divider">or use email</div>
+
+                <!-- Form Tabs -->
+                <div class="login-tabs-nav">
+                    <button class="login-tab-btn active" id="tab-btn-signin">Sign In</button>
+                    <button class="login-tab-btn" id="tab-btn-signup">Create Account</button>
+                </div>
+
+                <!-- Sign In Form -->
+                <form id="form-signin" class="login-form active" novalidate>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <div class="form-input-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="signin-email" class="form-input" placeholder="e.g. name@domain.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password *</label>
+                        <div class="form-input-icon">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="signin-password" class="form-input" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-submit-btn" style="background-color: var(--color-primary); margin-top: 10px;">
+                        <i class="fa-solid fa-right-to-bracket"></i> Sign In
+                    </button>
+                </form>
+
+                <!-- Create Account Form -->
+                <form id="form-signup" class="login-form" novalidate>
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <div class="form-input-icon">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="signup-name" class="form-input" placeholder="e.g. Ramesh Kumar" required minlength="3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <div class="form-input-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="signup-email" class="form-input" placeholder="e.g. name@domain.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password *</label>
+                        <div class="form-input-icon">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="signup-password" class="form-input" placeholder="Minimum 6 characters" required minlength="6">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password *</label>
+                        <div class="form-input-icon">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="signup-confirm-password" class="form-input" placeholder="Repeat password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-submit-btn" style="background-color: var(--color-primary); margin-top: 10px;">
+                        <i class="fa-solid fa-user-plus"></i> Create Account
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- App Main Dashboard Layout (Hidden until logged in) -->
+        <div id="app-main-layout" style="display: none; flex-direction: column; width: 100%; height: 100%; overflow: hidden;">
+            
+            <!-- Crimson Header -->
+            <header class="app-header">
+                <div class="brand-wrapper">
+                    <div class="brand-logo" style="background: #ffffff; padding: 2px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <img src="logo.jpeg" alt="Logo" style="width: 100%; height: 100%; border-radius: 50%; object-fit: contain;">
+                    </div>
+                    <div class="brand-text">
+                        <h1>BHARATH BLOOD DONOR</h1>
+                        <span>Donate Blood, Save Lives</span>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div class="header-badge" id="btn-focus-vijayawada">
+                        <i class="fa-solid fa-location-crosshairs"></i> FOCUS
+                    </div>
+                    <button class="header-logout-btn" id="btn-header-logout" title="Logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+            </header>
+
+        <!-- Main Content (Scrollable) -->
+        <main class="app-main">
+            
+            <!-- SECTION 1: SEARCH TAB -->
+            <section id="tab-search" class="tab-content active">
+                
+                <!-- Voluntary Donation Warning -->
+                <div class="alert-voluntary">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p><strong>Voluntary Donation:</strong> This is a free platform representing verified donors of Andhra Pradesh. Never pay anyone for blood!</p>
+                </div>
+
+                <!-- Vijayawada Fast-Track Banner -->
+                <div class="fast-track-card">
+                    <div class="fast-track-header">
+                        <span class="fast-track-badge"><i class="fa-solid fa-bolt"></i> VIJAYAWADA FAST-TRACK</span>
+                        <span class="fast-track-region">Krishna / NTR region</span>
+                    </div>
+                    <h2>Find Instant Donors in Vijayawada</h2>
+                    <p>Click on a blood group below to search directly in Vijayawada city.</p>
+                    
+                    <div class="fast-track-grid">
+                        <button class="fast-track-btn" data-group="O+">O+</button>
+                        <button class="fast-track-btn" data-group="B+">B+</button>
+                        <button class="fast-track-btn" data-group="A+">A+</button>
+                        <button class="fast-track-btn" data-group="AB+">AB+</button>
+                    </div>
+                </div>
+
+                <!-- Custom Search Filters -->
+                <div class="section-card">
+                    <div class="card-title-row">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Custom Search Filters</span>
+                    </div>
+                    
+                    <h3>Select Blood Group Required:</h3>
+                    
+                    <!-- 19 blood group button selectors grid -->
+                    <div class="blood-group-grid" id="search-bg-grid">
+                        <button class="blood-group-btn selected" data-group="O+">O+</button>
+                        <button class="blood-group-btn" data-group="O-">O-</button>
+                        <button class="blood-group-btn" data-group="A+">A+</button>
+                        <button class="blood-group-btn" data-group="A-">A-</button>
+                        
+                        <button class="blood-group-btn" data-group="B+">B+</button>
+                        <button class="blood-group-btn" data-group="B-">B-</button>
+                        <button class="blood-group-btn" data-group="AB+">AB+</button>
+                        <button class="blood-group-btn" data-group="AB-">AB-</button>
+                        
+                        <button class="blood-group-btn" data-group="A1+">A1+</button>
+                        <button class="blood-group-btn" data-group="A1-">A1-</button>
+                        <button class="blood-group-btn" data-group="A2+">A2+</button>
+                        <button class="blood-group-btn" data-group="A2-">A2-</button>
+                        
+                        <button class="blood-group-btn" data-group="A1B+">A1B+</button>
+                        <button class="blood-group-btn" data-group="A1B-">A1B-</button>
+                        <button class="blood-group-btn" data-group="A2B+">A2B+</button>
+                        <button class="blood-group-btn" data-group="A2B-">A2B-</button>
+                        
+                        <button class="blood-group-btn span-2" data-group="Bombay Phenotype (Oh+)">Bombay Phenotype (Oh+)</button>
+                        <button class="blood-group-btn span-2" data-group="Bombay Phenotype (Oh-)">Bombay Phenotype (Oh-)</button>
+                        <button class="blood-group-btn span-2" data-group="Rh-null (Golden)">Rh-null (Golden)</button>
+                    </div>
+
+                    <!-- Dropdown Selectors -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>District in AP *</label>
+                            <div class="select-wrapper">
+                                <select class="form-control" id="search-district">
+                                    <!-- Populated dynamically by JS -->
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-chevron"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>City / Area *</label>
+                            <div class="select-wrapper">
+                                <select class="form-control" id="search-city">
+                                    <!-- Populated dynamically by JS -->
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-chevron"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button class="search-submit-btn" id="btn-submit-search">
+                        <i class="fa-solid fa-magnifying-glass"></i> Search Blood Donors
+                    </button>
+                </div>
+
+                <!-- Results Header Row -->
+                <div class="results-header-row" id="results-meta-row" style="display: none;">
+                    <span class="results-title" id="results-title-text">O+ Donors in Vijayawada</span>
+                    <span class="results-count-badge" id="results-count-text">0 Found</span>
+                </div>
+
+                <!-- Donors List -->
+                <div class="donors-list" id="donors-container">
+                    <!-- Populated dynamically by JS -->
+                </div>
+
+            </section>
+
+            <!-- SECTION 2: REQUESTS TAB -->
+            <section id="tab-requests" class="tab-content">
+                
+                <!-- Emergency Board Header Card -->
+                <div class="emergency-board-card">
+                    <div class="emergency-board-left">
+                        <span class="emergency-board-pill">EMERGENCY BOARD</span>
+                        <h2>Need Blood Urgently?</h2>
+                        <p>Broadcast your request to thousands of volunteers across AP.</p>
+                    </div>
+                    <button class="emergency-post-btn" id="btn-post-request-trigger">+ Post Request</button>
+                </div>
+
+                <!-- Filters Row -->
+                <div class="requests-filters-row">
+                    <div class="select-wrapper" style="flex: 1;">
+                        <select class="form-control" id="filter-req-group">
+                            <option value="">All Blood Groups</option>
+                            <!-- Populated dynamically by JS -->
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-chevron"></i>
+                    </div>
+                    <div class="select-wrapper" style="flex: 1;">
+                        <select class="form-control" id="filter-req-district">
+                            <option value="">All Districts</option>
+                            <!-- Populated dynamically by JS -->
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-chevron"></i>
+                    </div>
+                </div>
+
+                <!-- Requests Cards List -->
+                <div class="requests-list" id="requests-container">
+                    <!-- Populated dynamically by JS -->
+                </div>
+
+            </section>
+
+            <!-- SECTION 3: BE A DONOR TAB -->
+            <section id="tab-register" class="tab-content">
+                
+                <!-- Centered Hero Icon -->
+                <div class="register-centered-header">
+                    <div class="register-avatar-icon">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <h2>Register as a Hero</h2>
+                    <p>Your donation can give someone a tomorrow. Register to be listed as a voluntary donor in Andhra Pradesh.</p>
+                </div>
+
+                <!-- Form Card -->
+                <div class="section-card register-form-container">
+                    <form id="donor-registration-form" novalidate>
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label>Full Name *</label>
+                            <div class="form-input-icon">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" id="reg-name" class="form-input" placeholder="e.g. Ramesh Kumar" required minlength="3">
+                            </div>
+                        </div>
+
+                        <div class="form-row" style="margin-bottom: 12px;">
+                            <div class="form-group">
+                                <label>Blood Group *</label>
+                                <div class="select-wrapper">
+                                    <select class="form-control" id="reg-blood-group" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <!-- Populated dynamically -->
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down select-chevron"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Age (18-65 Yrs) *</label>
+                                <input type="number" id="reg-age" class="form-input" placeholder="25" required min="18" max="65">
+                            </div>
+                        </div>
+
+                        <div class="form-row" style="margin-bottom: 12px;">
+                            <div class="form-group">
+                                <label>Gender *</label>
+                                <div class="select-wrapper">
+                                    <select class="form-control" id="reg-gender" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down select-chevron"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Current Status *</label>
+                                <div class="select-wrapper">
+                                    <select class="form-control" id="reg-status" required>
+                                        <option value="Available">Available for Call</option>
+                                        <option value="Resting">Resting (On break)</option>
+                                        <option value="Busy">Busy</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down select-chevron"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 4px;">
+                            <label>Caretaker / Personal Mobile *</label>
+                            <div class="form-input-icon">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" id="reg-phone" class="form-input" placeholder="e.g. +91 98480 12345" required pattern="[6-9][0-9]{9}">
+                            </div>
+                        </div>
+                        <span class="form-info-note" style="margin-bottom: 12px; display: block;">Will be displayed exclusively to users searching for emergency matching blood groups.</span>
+
+                        <div class="form-row" style="margin-bottom: 12px;">
+                            <div class="form-group">
+                                <label>District in AP *</label>
+                                <div class="select-wrapper">
+                                    <select class="form-control" id="reg-district" required>
+                                        <!-- Populated dynamically -->
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down select-chevron"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>City / Area *</label>
+                                <div class="select-wrapper">
+                                    <select class="form-control" id="reg-city" required>
+                                        <!-- Populated dynamically -->
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down select-chevron"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>Last Blood Donation Date</label>
+                            <div class="select-wrapper">
+                                <select class="form-control" id="reg-last-donated">
+                                    <option value="Never">First Time Donor (Never)</option>
+                                    <option value="Recent">Within last 3 months</option>
+                                    <option value="Older">More than 3 months ago</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-chevron"></i>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="search-submit-btn" style="background-color: var(--color-primary);" id="btn-submit-register">
+                            <i class="fa-solid fa-circle-check"></i> Register Now
+                        </button>
+                    </form>
+                </div>
+
+            </section>
+
+            <!-- SECTION 4: ABOUT AP TAB -->
+            <section id="tab-about" class="tab-content">
+                
+                <p class="about-subtitle">AP Blood Donor Network connects patients directly with willing voluntary blood donors in Vijayawada, Guntur, Vizag, and all other AP locations.</p>
+
+                <!-- Interactive Compatibility Checker Card -->
+                <div class="compatibility-checker-card">
+                    <h3><i class="fa-solid fa-droplet"></i> Interactive Compatibility Checker</h3>
+                    <p>Select a blood type below to see who they can safely Donate to or Receive from:</p>
+                    
+                    <div class="compat-buttons-grid" id="compat-grid">
+                        <button class="compat-btn" data-type="O-">O-</button>
+                        <button class="compat-btn active" data-type="O+">O+</button>
+                        <button class="compat-btn" data-type="A-">A-</button>
+                        <button class="compat-btn" data-type="A+">A+</button>
+                        
+                        <button class="compat-btn" data-type="B-">B-</button>
+                        <button class="compat-btn" data-type="B+">B+</button>
+                        <button class="compat-btn" data-type="AB-">AB-</button>
+                        <button class="compat-btn" data-type="AB+">AB+</button>
+                    </div>
+
+                    <div class="compat-outcomes">
+                        <div class="compat-row donate">
+                            <label><i class="fa-solid fa-chevron-up"></i> Can Donate To</label>
+                            <div class="compat-pills-list" id="compat-donate-list">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+                        </div>
+                        <div class="compat-row receive">
+                            <label><i class="fa-solid fa-chevron-down"></i> Can Receive From</label>
+                            <div class="compat-pills-list" id="compat-receive-list">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Blood Banks Card -->
+                <div class="section-card">
+                    <div class="card-title-row">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>AP Emergency Blood Banks</span>
+                    </div>
+                    
+                    <div class="blood-banks-list">
+                        <div class="blood-bank-row">
+                            <div class="blood-bank-info">
+                                <span class="blood-bank-name">Red Cross Blood Bank</span>
+                                <span class="blood-bank-address"><i class="fa-solid fa-location-dot"></i> Gandhi Nagar, Vijayawada</span>
+                            </div>
+                            <button class="call-bank-btn" data-phone="08662572242">Call Bank</button>
+                        </div>
+                        <div class="blood-bank-row">
+                            <div class="blood-bank-info">
+                                <span class="blood-bank-name">GGH Govt Blood Bank</span>
+                                <span class="blood-bank-address"><i class="fa-solid fa-location-dot"></i> GGH Campus, Guntur</span>
+                            </div>
+                            <button class="call-bank-btn" data-phone="08632233444">Call Bank</button>
+                        </div>
+                        <div class="blood-bank-row">
+                            <div class="blood-bank-info">
+                                <span class="blood-bank-name">KGH Blood Bank</span>
+                                <span class="blood-bank-address"><i class="fa-solid fa-location-dot"></i> Maharanipeta, Visakhapatnam</span>
+                            </div>
+                            <button class="call-bank-btn" data-phone="08912564242">Call Bank</button>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- Toast Notifications Overlay -->
+        <div class="toast-container" id="toast">
+            <i class="fa-solid fa-circle-check"></i>
+            <span id="toast-message">Copied to Clipboard!</span>
+        </div>
+
+        <!-- Post Emergency Request Modal -->
+        <div id="request-modal" class="modal-overlay">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3><i class="fa-solid fa-truck-medical"></i> Post Emergency Blood Request</h3>
+                    <div class="modal-close-btn" id="btn-close-modal">&times;</div>
+                </div>
+                <form id="blood-request-form" novalidate style="display: flex; flex-direction: column; gap: 12px;">
+                    <div class="form-group">
+                        <label>Patient Name *</label>
+                        <input type="text" id="req-patient-name" class="form-input" placeholder="e.g. Subbaiah Sastry" required minlength="3">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Blood Group Required *</label>
+                            <div class="select-wrapper">
+                                <select class="form-control" id="req-blood-group" required>
+                                    <!-- Populated dynamically -->
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-chevron"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Units Needed *</label>
+                            <input type="number" id="req-units" class="form-input" placeholder="3" required min="1" max="20" value="3">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hospital & Address *</label>
+                        <input type="text" id="req-hospital" class="form-input" placeholder="e.g. Ramesh Hospitals, Vijayawada" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>District in AP *</label>
+                            <div class="select-wrapper">
+                                <select class="form-control" id="req-district" required>
+                                    <!-- Populated dynamically -->
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-chevron"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>City / Area *</label>
+                            <div class="select-wrapper">
+                                <select class="form-control" id="req-city" required>
+                                    <!-- Populated dynamically -->
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-chevron"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Reason / Diagnosis *</label>
+                        <input type="text" id="req-reason" class="form-input" placeholder="e.g. Cardiac Surgery Emergency" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Contact Person *</label>
+                            <input type="text" id="req-contact-name" class="form-input" placeholder="e.g. Narayana (Son)" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" id="req-phone" class="form-input" placeholder="e.g. 9948512121" required pattern="[6-9][0-9]{9}">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="search-submit-btn" style="background-color: var(--color-primary); margin-top: 10px;" id="btn-submit-req">
+                        <i class="fa-solid fa-paper-plane"></i> Broadcast Request
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Global Navigation Bottom Bar -->
+        <nav class="app-nav-bar" id="appNavBar">
+            <div class="nav-bar-item active" data-tab="search" id="tab-btn-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>SEARCH</span>
+            </div>
+            <div class="nav-bar-item" data-tab="requests" id="tab-btn-requests">
+                <i class="fa-solid fa-bell"></i>
+                <div class="nav-badge" id="requests-badge-count">4</div>
+                <span>REQUESTS</span>
+            </div>
+            <div class="nav-bar-item" data-tab="register" id="tab-btn-register">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>BE A DONOR</span>
+            </div>
+            <div class="nav-bar-item" data-tab="about" id="tab-btn-about">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>ABOUT AP</span>
+            </div>
+        </nav>
+
+        </div> <!-- #app-main-layout -->
+
+        <!-- Mock Google Accounts Selector Dialog -->
+        <div id="google-auth-modal" class="google-modal-overlay">
+            <div class="google-modal-container">
+                <div class="google-modal-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="24" height="24">
+                    <h3>Choose an account</h3>
+                    <p>to continue to Bharath Blood Donor</p>
+                </div>
+                <div class="google-accounts-list">
+                    <div class="google-account-row" id="g-acc-1">
+                        <div class="google-avatar">M</div>
+                        <div class="google-profile-info">
+                            <span class="google-profile-name">Mahesh K.</span>
+                            <span class="google-profile-email">mahesh.bloodbank@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="google-account-row" id="g-acc-2">
+                        <div class="google-avatar" style="background-color: #0d9488;">A</div>
+                        <div class="google-profile-info">
+                            <span class="google-profile-name">Aarav Reddy</span>
+                            <span class="google-profile-email">aarav.reddy99@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="google-account-row" id="g-acc-3">
+                        <div class="google-avatar" style="background-color: #2563eb;">T</div>
+                        <div class="google-profile-info">
+                            <span class="google-profile-name">Test User</span>
+                            <span class="google-profile-email">user.test@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="google-account-row" id="g-acc-new">
+                        <div class="google-avatar" style="background-color: #64748b;"><i class="fa-solid fa-plus"></i></div>
+                        <div class="google-profile-info">
+                            <span class="google-profile-name">Use another account</span>
+                            <span class="google-profile-email">Add or switch accounts</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="google-modal-footer">
+                    To continue, Google will share your name, email address, and profile picture with Bharath Blood Donor.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Redesigned Client Scripts -->
+    <script src="app-v2.js"></script>
+</body>
+</html>
